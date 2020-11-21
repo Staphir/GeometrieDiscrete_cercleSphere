@@ -22,8 +22,8 @@ def drawImage(list_coords_pixels):
 
 if __name__ == "__main__":
     # affichage cercle brute force (rayon du cercle, img_width, img_height)
-    drawImage(cercle_analytique.createCercle(200, img_width, img_height))
+    drawImage(cercle_brute_force.createCercle(200, img_width, img_height))
 
     # affichage cercle analytique
-    # drawImage(cercle_analytique.createCercle())
+    # drawImage(cercle_analytique.createCercle(200, img_width, img_height))
 
