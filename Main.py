@@ -1,11 +1,30 @@
 import cercle_brute_force
 import cercle_analytique
+import hypersphere
 
 from PIL import Image
 
-img_width = 1000
-img_height = 1000
+import matplotlib.pyplot as plt
+import numpy as np
 
+rayon = 50
+img_width = 150
+img_height = 150
+img_deep = 150
+
+def draw3DImage(list_coords_pixels):
+    voxels = [[[False for _ in range(img_deep)] for _ in range(img_height)] for _ in range(img_width)]
+
+    for i in list_coords_pixels:
+        voxels[i[0]][i[1]][i[2]+25] = True
+
+    voxels = np.array(voxels) #numpy array de true et false
+
+    fig = plt.figure()
+    ax = fig.gca(projection='3d')
+    ax.voxels(voxels, facecolors='yellow')
+
+    plt.show()
 
 def drawImage(list_coords_pixels):
     # création image
@@ -22,8 +41,11 @@ def drawImage(list_coords_pixels):
 
 if __name__ == "__main__":
     # affichage cercle brute force (rayon du cercle, img_width, img_height)
-    drawImage(cercle_brute_force.createCercle(200, img_width, img_height))
+    # drawImage(cercle_brute_force.createCercle(rayon, img_width, img_height))
 
     # affichage cercle analytique
-    # drawImage(cercle_analytique.createCercle(200, img_width, img_height))
+    drawImage(cercle_analytique.createCercle(rayon, img_width, img_height))
+
+    # affichage sphere analytique
+    # draw3DImage(hypersphere.createHypersphere(rayon, img_width, img_height, img_deep))
 
