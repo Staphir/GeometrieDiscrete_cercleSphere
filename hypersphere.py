@@ -1,21 +1,25 @@
 import cercle_analytique
 
 def newZ(z, ray_t, hyper_sphere_ray, img_width, img_deep):
-    r2 = (int) (hyper_sphere_ray * hyper_sphere_ray +1/2)
-    r2_1 = (int) ((hyper_sphere_ray+1) * (hyper_sphere_ray+1) +1/2)
+    r2 = (int) (hyper_sphere_ray * hyper_sphere_ray + 1/2)
+    r2_1 = (int) ((hyper_sphere_ray+1) * (hyper_sphere_ray+1) + 1/2)
 
-    c_x = ray_t*ray_t
+    c_x = ray_t * ray_t
     c_x_1 = (ray_t + 1) * (ray_t + 1)
 
-    c_z = z*z
+    c_y = ray_t * ray_t
+    c_y_1 = (ray_t + 1) * (ray_t + 1)
+
+    c_z = z * z
     c_z_1 = (z + 1) * (z + 1)
 
     var_x_1 = (int)(c_z + c_x_1 + 1/2)
+    var_y_1 = (int)(c_z + c_y_1 + 1/2)
     var_z_1 = (int)(c_x + c_z_1 + 1/2)
 
-    if r2 <= var_z_1 and var_z_1 < r2_1:
+    if r2 - var_z_1 <= var_y_1 < r2_1 - var_z_1:
         return 1
-    elif r2 <= var_x_1 and var_x_1 < r2_1:
+    elif r2 - var_z_1 <= var_x_1 < r2_1 - var_z_1:
         return 0
     else:
         return 1
