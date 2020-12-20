@@ -1,10 +1,11 @@
-def createCercle(circle_ray, img_width, img_height):
+def createCercle(circle_ray, img_width, img_height, stroke_width):
     list_coords_pixels = list(tuple())
 
     x_c = (int)(img_width / 2 + 1/2)
     y_c = (int)(img_height / 2 + 1/2)
     r2 = (int)(circle_ray * circle_ray + 1 / 2)
-    r2_1 = (int)((circle_ray + 1) * (circle_ray + 1) + 1 / 2)
+
+    r2_1 = (int)((circle_ray + stroke_width) * (circle_ray + stroke_width) + 1 / 2)
 
     for x in range(img_width):
         for y in range(img_height):
