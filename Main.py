@@ -42,15 +42,22 @@ def drawImage(list_coords_pixels):
     image.show()
 
 if __name__ == "__main__":
-    # affichage cercle brute force (rayon du cercle, img_width, img_height)
-    # drawImage(cercle_brute_force.createCercle(rayon, img_width, img_height))
+    stroke_width = 1
+    cmd = ''
+    while(cmd != 'q'):
+        cmd = input("command cercle :\n\tb: brute force\n\ta: analytique\ns: sphere\nc: change width\nq: quit application\n>> ")
+        if(cmd == 'b'):
+            # affichage cercle brute force (rayon du cercle, img_width, img_height)
+            drawImage(cercle_brute_force.createCercle(rayon, img_width, img_height, stroke_width))
 
-    # affichage cercle analytique
-    # drawImage(cercle_analytique.createCercle(rayon, img_width, img_height))
+        if(cmd == 'a'):
+            # affichage cercle analytique
+            drawImage(cercle_analytique.createCercle(rayon, img_width, img_height, stroke_width))
+        
+        if(cmd == 's'):
+            # affichage sphere analytique
+            draw3DImage(sphere_brute_force.createSphere(rayon, img_width, img_height, img_deep))
 
-    # affichage sphere analytique
-    # draw3DImage(hypersphere.createHypersphere(rayon, img_width, img_height, img_deep))
-
-    # affichage sphere analytique
-    draw3DImage(sphere_brute_force.createSphere(rayon, img_width, img_height, img_deep))
+        if(cmd == 'c'):
+            stroke_width = int(input("new stoke width"))
 
