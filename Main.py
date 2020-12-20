@@ -8,16 +8,17 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 
-rayon = 20
-img_width = 50
-img_height = 50
-img_deep = 50
+rayon = 12
+img_width = 30
+img_height = 30
+img_deep = 30
 
 def draw3DImage(list_coords_pixels):
+    # print(list_coords_pixels)
     voxels = [[[False for _ in range(img_deep)] for _ in range(img_height)] for _ in range(img_width)]
 
     for i in list_coords_pixels:
-        voxels[i[1]][i[0]][i[2]] = True
+        voxels[i[0]][i[1]][i[2]] = True
 
     voxels = np.array(voxels) #numpy array de true et false
 
