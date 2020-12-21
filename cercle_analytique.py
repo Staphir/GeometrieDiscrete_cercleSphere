@@ -1,15 +1,16 @@
 from math import sqrt
 
-# calcul des pixels d'un octant du cercle
-def getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width):
-    # position de départ (à droite du cercle)
-    x_c = (int)(img_width / 2 + 1/2)
-    y_c = (int)(img_height / 2 + 1/2)
+# renvoie les cordonnées des points compris entre
+# le rayon et rayon + stroke width appartenant au cercle dans
+# l'octant sud-est de manière incrementale en partant du point
+# (img_size / 2 + 0.5, img_size/2 + 0.5)
+def getPixelsOctantEstSud(circle_ray, img_size, stroke_width):
+    # position de départ (centre droite du cercle)
+    x_c = (int)(img_size / 2 + 1/2)
+    y_c = (int)(img_size / 2 + 1/2)
 
     all_points = []
-    # calcul des coordonnées de l'octant pour chaque épaisseur
     for i in range(stroke_width):
-        # rayon plus "étape" d'épaisseur = nouveau rayon pour ce tour de boucle
         circle_ray_i = circle_ray + i
 
         # ajout du premier pixel de l'octant
@@ -19,8 +20,6 @@ def getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width):
         # tant que y est fait partie de l'octant
         while y != (int)(y_c + (int)((sqrt(2)/2)+1/2) * circle_ray_i + 1/2):
 
-            # initialisation variables permettant de faire les tests
-            # pour trouver le nouveau pixel
             c_x = (circle_pixels[-1][0] - x_c) * (circle_pixels[-1][0] - x_c)
             c_x_1 = (circle_pixels[-1][0] - 1 - x_c) * (circle_pixels[-1][0] - 1 - x_c)
 
@@ -35,7 +34,6 @@ def getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width):
 
             # juste descendre en y est bon ?
             if r2 <= var_y_1 and var_y_1 < r2_1 :
-                # ajout du pixel dans la liste des pixels du cercle
                 circle_pixels.append((circle_pixels[-1][0], y + 1))
                 y += 1
 
@@ -51,7 +49,9 @@ def getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width):
         all_points = all_points + circle_pixels
     return all_points
 
-# symetries pour avoir tous les pixels du cercle
+# Récupère l'octant sud-est et le rayon pour calculer
+# le cercle entier par symétrie
+# renvoie la liste de tous les points
 def completeCircle(octant_est_sud, circle_ray):
     octant_sud_est = []
     octant_sud_est.append(octant_est_sud[0])
@@ -61,8 +61,6 @@ def completeCircle(octant_est_sud, circle_ray):
         new_coord = (coord[1], coord[0])
         octant_sud_est.append(new_coord)
 
-    # ajout du nouvel octant dans la liste des pixels du cercle
-    # pour former le premier quart du cercle
     quart_sud_est = octant_est_sud + octant_sud_est
 
     # -----------------------------
@@ -95,11 +93,12 @@ def completeCircle(octant_est_sud, circle_ray):
 
     return  quart_sud_est + quart_sud_ouest + quart_nord_est + quart_nord_ouest
 
-def createCercle(circle_ray, img_width, img_height, stroke_width):
-    # calcul des pixels de l'octant est-sud du cercle
-    octant_est_sud = getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width)
+# fonction interface créant un cercle via les fonction
+# getPixelsOctantEstSud et completeCircle et renvoie
+# les coordonnées des points
+def createCercle(circle_ray, img_size, stroke_width):
+    octant_est_sud = getPixelsOctantEstSud(circle_ray, img_size, img_size, stroke_width)
 
-    # utilisation de symetries pour récupérer tous les pixels du cercles
     list_coords_pixels = completeCircle(octant_est_sud, circle_ray)
 
     # retourne toutes les coordonnées des pixels du cercle d'épaisseur : stroke_width
