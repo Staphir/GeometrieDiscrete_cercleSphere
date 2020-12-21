@@ -1,9 +1,10 @@
-
-def createSphere(sphere_ray, img_size, img_deep):
+# renvoie les cordonnées des points compris entre le rayon et rayon + stroke width
+# appartenant à la sphere en parcourant tous les points de l'image
+def createSphere(sphere_ray, img_size, img_deep, stroke_width):
     list_coord_pixels_sphere = []
 
     sphere_ray_2 = sphere_ray * sphere_ray
-    sphere_ray_2_1 = (sphere_ray+1) * (sphere_ray+1)
+    sphere_ray_2_1 = (sphere_ray+stroke_width) * (sphere_ray+stroke_width)
 
     x_c = int(img_size / 2 + 1 / 2)
     y_c = int(img_size / 2 + 1 / 2)

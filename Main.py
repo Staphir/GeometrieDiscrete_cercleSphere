@@ -1,6 +1,5 @@
 import cercle_brute_force
 import cercle_analytique
-import hypersphere
 import sphere_brute_force
 
 from PIL import Image
@@ -56,7 +55,9 @@ if __name__ == "__main__":
         "r: change radius\n"
         "c: change stroke width\n"
         "i: change image size\n"
-        "d: change image deepness\n>> ")
+        "d: change image deepness\n"
+        "radius = "+str(radius)+" | stroke width = "+str(stroke_width)+" | "
+        "image size = "+str(img_size)+" | image deepness = "+str(img_deep)+"\n>> ")
         if(cmd == 'b'):
             # affichage cercle brute force (rayon du cercle, img_size, stroke_width)
             drawImage(cercle_brute_force.createCercle(radius, img_size, stroke_width))
@@ -66,8 +67,8 @@ if __name__ == "__main__":
             drawImage(cercle_analytique.createCercle(radius, img_size, stroke_width))
     
         if(cmd == 's'):
-            # affichage sphere analytique
-            draw3DImage(sphere_brute_force.createSphere(radius, img_size, img_deep))
+            # affichage sphere brute force
+            draw3DImage(sphere_brute_force.createSphere(radius, img_size, img_deep, stroke_width))
 
         if(cmd == 'c'):
             param = int(input("stroke width (>= 1): "))
