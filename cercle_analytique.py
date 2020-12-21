@@ -1,10 +1,10 @@
 from math import sqrt
 
 
-def getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width):
+def getPixelsOctantEstSud(circle_ray, img_size, stroke_width):
     # position de départ (centre droite du cercle)
-    x_c = (int)(img_width / 2 + 1/2)
-    y_c = (int)(img_height / 2 + 1/2)
+    x_c = (int)(img_size / 2 + 1/2)
+    y_c = (int)(img_size / 2 + 1/2)
 
     all_points = []
     for i in range(stroke_width):
@@ -77,8 +77,8 @@ def completeCircle(octant_est_sud, circle_ray):
 
     return  quart_sud_est + quart_sud_ouest + quart_nord_est + quart_nord_ouest
 
-def createCercle(circle_ray, img_width, img_height, stroke_width):
-    octant_est_sud = getPixelsOctantEstSud(circle_ray, img_width, img_height, stroke_width)
+def createCercle(circle_ray, img_size, stroke_width):
+    octant_est_sud = getPixelsOctantEstSud(circle_ray, img_size, img_size, stroke_width)
 
     list_coords_pixels = completeCircle(octant_est_sud, circle_ray)
 
