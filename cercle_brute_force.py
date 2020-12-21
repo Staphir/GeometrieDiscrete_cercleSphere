@@ -1,3 +1,5 @@
+# renvoie les cordonnées des points compris entre le rayon et rayon + stroke width 
+# appartenant au cercle en testant tous les points de l'image
 def createCercle(circle_ray, img_size, stroke_width):
     list_coords_pixels = list(tuple())
 

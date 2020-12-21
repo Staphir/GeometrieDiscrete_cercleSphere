@@ -1,6 +1,9 @@
 from math import sqrt
 
-
+# renvoie les cordonnées des points compris entre 
+# le rayon et rayon + stroke width appartenant au cercle dans 
+# l'octant sud-est de manière incrementale en partant du point
+# (img_size / 2 + 0.5, img_size/2 + 0.5)
 def getPixelsOctantEstSud(circle_ray, img_size, stroke_width):
     # position de départ (centre droite du cercle)
     x_c = (int)(img_size / 2 + 1/2)
@@ -36,7 +39,9 @@ def getPixelsOctantEstSud(circle_ray, img_size, stroke_width):
         all_points = all_points + circle_pixels
     return all_points
 
-
+# Récupère l'octant sud-est et le rayon pour calculer
+# le cercle entier par symétrie 
+# renvoie la liste de tous les points
 def completeCircle(octant_est_sud, circle_ray):
     octant_sud_est = []
     octant_sud_est.append(octant_est_sud[0])
@@ -77,6 +82,9 @@ def completeCircle(octant_est_sud, circle_ray):
 
     return  quart_sud_est + quart_sud_ouest + quart_nord_est + quart_nord_ouest
 
+# fonction interface créant un cercle via les fonction
+# getPixelsOctantEstSud et completeCircle et renvoie
+# les coordonnées des points
 def createCercle(circle_ray, img_size, stroke_width):
     octant_est_sud = getPixelsOctantEstSud(circle_ray, img_size, img_size, stroke_width)
 

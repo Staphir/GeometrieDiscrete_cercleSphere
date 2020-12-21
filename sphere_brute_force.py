@@ -1,3 +1,4 @@
+
 def createSphere(sphere_ray, img_size, img_deep):
     list_coord_pixels_sphere = []
 

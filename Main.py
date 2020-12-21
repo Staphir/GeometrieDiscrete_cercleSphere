@@ -12,6 +12,7 @@ radius = 12
 img_size = 30
 img_deep = 30
 
+# Affiche dans un graphe 3D les points dans list_coords_pixels 
 def draw3DImage(list_coords_pixels):
     # print(list_coords_pixels)
     voxels = [[[False for _ in range(img_deep)] for _ in range(img_size)] for _ in range(img_size)]
@@ -27,6 +28,8 @@ def draw3DImage(list_coords_pixels):
 
     plt.show()
 
+# Affiche dans une image carrée de taille img_size 
+# les points dans list_coords_pixels 
 def drawImage(list_coords_pixels):
     # création image
 
