@@ -43,14 +43,14 @@ def drawImage(list_coords_pixels):
 
 if __name__ == "__main__":
     # affichage cercle brute force (rayon du cercle, img_width, img_height)
-    # drawImage(cercle_brute_force.createCercle(rayon, img_width, img_height))
+    #  drawImage(cercle_brute_force.createCercle(rayon, img_width, img_height, 10))
 
     # affichage cercle analytique
-    # drawImage(cercle_analytique.createCercle(rayon, img_width, img_height))
+    # drawImage(cercle_analytique.createCercle(rayon, img_width, img_height, 10))
 
-    # affichage sphere analytique
+    # affichage sphere analytique (erreur dans le résultat)
     # draw3DImage(hypersphere.createHypersphere(rayon, img_width, img_height, img_deep))
 
-    # affichage sphere analytique
+    # affichage sphere brute force
     draw3DImage(sphere_brute_force.createSphere(rayon, img_width, img_height, img_deep))
 
